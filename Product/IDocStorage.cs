@@ -9,7 +9,7 @@ namespace FactoryMethod.Product
 {
     public interface IDocStorage
     {
-        void Save(string name, XDocument document);
-        XDocument Load(string name);
+        void Save(string name, string document);
+        string Load(string name);
     }
 }
