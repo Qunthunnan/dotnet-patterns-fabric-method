@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,15 +10,26 @@ namespace FactoryMethod.Product
 {
     public class DocxDocStorage : IDocStorage
     {
-        public XDocument Load(string name)
+        public string Load(string name)
         {
-            Console.WriteLine("Load Docx");
-            return null;
+            
+            if (File.Exists(name + ".docx"))
+            {
+                string document;
+                StreamReader reader = new StreamReader(name + ".docx");
+                document = reader.ReadToEnd();
+                reader.Close();
+                return document;
+            }
+            else
+            return "";
         }
 
-        public void Save(string name, XDocument document)
+        public void Save(string name, string document)
         {
-            Console.WriteLine("Save Docx");
+            StreamWriter write = new StreamWriter(name + ".docx");
+            write.Write(document);
+            write.Close();
         }
     }
 }

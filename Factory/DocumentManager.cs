@@ -15,14 +15,14 @@ namespace FactoryMethod.Factory
         public abstract IDocStorage CreateStorage();
         public abstract IDocStorage CreateStorage<T>() where T: IDocStorage, new();
 
-        public bool Save(XDocument document, String _name)
+        public void Save(string document, String _name)
         {
             // using Factory method to create a new document storage
             IDocStorage storage = this.CreateStorage();
 
             storage.Save(_name, document);
 
-            return true;
+            //return true;
         }
 
         /*2*/
